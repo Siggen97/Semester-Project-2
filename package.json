@@ -1,0 +1,16 @@
+{
+  "name": "semester-project-2",
+  "version": "1.0.0",
+  "description": "An auction website, where users can add items to be bid on and bid on items other users have put up for auction.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.2",
+    "sass": "^1.70.0"
+  }
+}
