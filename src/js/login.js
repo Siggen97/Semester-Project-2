@@ -4,9 +4,9 @@ async function loginUser(email, password) {
     const response = await fetch('https://api.noroff.dev/v2/auth/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
-            'X-Noroff-API-Key': apiKey
-        },
+            Authorization: `Bearer ${accessToken}`,
+            "X-Noroff-API-Key": apiKey
+          },
         body: JSON.stringify({ email, password })
     });
 
