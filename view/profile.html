@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Auction Website</title>
+    <title>User Profile - Auction Website</title>
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script defer src="/src/js/login.js"></script>
+    <script defer src="/src/js/script.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -18,10 +18,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/view/login.html">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/view/register.html">Register</a>
+                        <a class="nav-link" href="javascript:logoutUser()">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -29,18 +26,8 @@
     </nav>
 
     <main class="container my-5">
-        <h2>Login</h2>
-        <form>
-            <div class="mb-3">
-                <label for="loginEmail" class="form-label">Email</label>
-                <input type="email" id="loginEmail" class="form-control" required>
-            </div>
-            <div class="mb-3">
-                <label for="loginPassword" class="form-label">Password</label>
-                <input type="password" id="loginPassword" class="form-control" required>
-            </div>
-            <button type="submit" class="btn btn-primary" onclick="loginUser(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value, event)">Login</button>
-        </form>
+        <h2>User Profile</h2>
+        <p>Welcome to your profile!</p>
     </main>
 
     <footer class="footer bg-light py-3">
