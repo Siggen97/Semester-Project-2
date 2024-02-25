@@ -1,9 +1,6 @@
-import { fetchWithToken } from './token'; 
-
 const apiBase = "https://v2.api.noroff.dev";
 const apiRegister = "/auth/register";
 const apiLogin = "/auth/login";
-
 
 
 function save(key, value) {
@@ -40,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
 // REGISTER USER
 async function register(name, email, password) {
     email = email.trim().toLowerCase();
@@ -70,19 +68,6 @@ async function register(name, email, password) {
         console.error("Registration Error:", error);
     }
 }
-    
-// FETCH PROFILE
-async function fetchUserProfile() {
-    const userProfileUrl = `${apiBase}/auction/profile?name=${encodeURIComponent(profile.name)}`; 
-    try {
-        const profile = await fetchWithToken(userProfileUrl);
-        console.log("User Profile:", profile);
-        
-    } catch (error) {
-        console.error("Fetching user profile failed:", error);
-        alert("Could not fetch user profile.");
-    }
-}
 
 
 
@@ -99,15 +84,8 @@ async function login(email, password) {
         if (loginResponse.ok) {
             const { accessToken } = await loginResponse.json();
             save("token", accessToken);
-
-            // USING fetchUserProfile FUNCTION TO GET USER DATA
-            const profile = await fetchUserProfile();
-            if (profile && profile.name) {
-                window.location.href = `/view/profile.html?name=${encodeURIComponent(profile.name)}&email=${encodeURIComponent(profile.email)}`;
-                return true;
-            } else {
-                throw new Error("Profile data is missing");
-            }
+            window.location.href = `profile.html?name=${loginResponse.email}&email=${loginResponse.email}`;
+            return true;
         } else {
             const error = await loginResponse.json();
             throw new Error("User could not login");
@@ -118,3 +96,4 @@ async function login(email, password) {
         return false;
     }
 }
+
