@@ -13,4 +13,30 @@ body main {
 }
 body .footer {
   text-align: center;
+}
+
+.profileBody .container1 {
+  display: flex;
+  margin: 2rem;
+  justify-content: space-between;
+}
+.profileBody .profileContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: left;
+}
+.profileBody .searchField {
+  width: 50%;
+}
+.profileBody .searchField form {
+  gap: 1rem;
+}
+.profileBody #profileImg {
+  width: 100px;
+  border-radius: 50%;
+}
+.profileBody .container2 {
+  display: flex;
+  margin: 3rem;
 }/*# sourceMappingURL=style.css.map */

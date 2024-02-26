@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <script defer type="module" src="/src/js/api.mjs"></script>
+    <script defer src="/src/js/script.js"></script>
+    <script defer src="/src/js/profile.mjs"></script>
 </head>
-<body>
+<body class="profileBody">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="/index.html">AuctionSite</a>
@@ -23,12 +25,24 @@
                 </ul>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
+<main>
+    <div class="container profileContainer">
+        <p>Hello and Welcome to your profile!</p>
+        <h1 id="username">***</h1>
+        <img src="/src/img/trossardprofile.png" alt="profileImg" id="profileImg">
+        
+        <p id="credits">Your Credits: <span id="creditAmount">Loading...</span></p>
+        
+        
+        <input type="url" id="newAvatarUrl" class="form-control d-none" placeholder="Enter new avatar URL">
+        <button id="updateAvatarBtn" class="btn btn-primary m-3">Update Avatar</button>
+        
+        <a href="/view/addListing.html" class="btn btn-success">Add New Listing</a>
+    </div>
+</main>
 
-    <main class="container my-5">
-        <h2>User Profile</h2>
-        <p>Welcome to your profile!</p>
-    </main>
 
     <footer class="footer bg-light py-3">
         <div class="container">
