@@ -39,4 +39,18 @@ body .footer {
 .profileBody .container2 {
   display: flex;
   margin: 3rem;
+}
+
+.search {
+  margin: 1rem;
+  width: auto;
+}
+
+.listingContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.listingContainer img {
+  height: 25rem;
 }/*# sourceMappingURL=style.css.map */

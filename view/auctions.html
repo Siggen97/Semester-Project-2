@@ -4,40 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auction Website</title>
-    <link rel="stylesheet" href="src/style.css">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script src="/src/js/auctions.js" type="module"></script>
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script defer src="/src/js/auctions.js" type="module"></script>
+    <script defer src="/src/js/script.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html">AuctionSite</a>
+            <a class="navbar-brand" href="auctions.html">AuctionSite</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/view/login.html">Login</a>
+                        <a class="nav-link" href="/view/auctions.html">Listings</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/view/register.html">Register</a>
+                        <a class="nav-link" href="/view/profile.html">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:logoutUser()">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <main class="container my-5">
-        <h1 class="h2">Welcome to AuctionSite</h1>
+    <main class="container auctionsMain my-5">
         <div>
-            <h3 class="mb-5 mt-5 h4">All the Latest Listings</h3>
+            <h3 class="mb-5">All the Latest Listings</h3>
             <div class="search mb-3 mt-3">
                 <input type="text" id="searchInput" class="form-control" placeholder="Search listings...">
             </div>
             <div class="container listingContainer">
-
-
             </div>
         </div>
         

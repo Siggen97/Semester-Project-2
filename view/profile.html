@@ -6,19 +6,25 @@
     <title>User Profile - Auction Website</title>
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script defer type="module" src="/src/js/api.mjs"></script>
-    <script defer src="/src/js/script.js"></script>
-    <script defer src="/src/js/profile.mjs"></script>
+    <script defer type="module" src="/src/js/profile.mjs"></script>
+    
+
 </head>
 <body class="profileBody">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/index.html">AuctionSite</a>
+            <a class="navbar-brand" href="auctions.html">AuctionSite</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/auctions.html">Listings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/view/profile.html">Profile</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:logoutUser()">Logout</a>
                     </li>
@@ -30,16 +36,21 @@
 <main>
     <div class="container profileContainer">
         <p>Hello and Welcome to your profile!</p>
-        <h1 id="username">***</h1>
+        <h1 id="username">username</h1>
         <img src="/src/img/trossardprofile.png" alt="profileImg" id="profileImg">
         
-        <p id="credits">Your Credits: <span id="creditAmount">Loading...</span></p>
+        <p id="credits"> <span id="creditAmount"></span></p>
         
         
-        <input type="url" id="newAvatarUrl" class="form-control d-none" placeholder="Enter new avatar URL">
+        <input type="url" id="newAvatarUrl" class="form-control" placeholder="Enter new avatar URL">
         <button id="updateAvatarBtn" class="btn btn-primary m-3">Update Avatar</button>
         
         <a href="/view/addListing.html" class="btn btn-success">Add New Listing</a>
+    </div>
+    <div>
+        <h3 class="m-5">My Listings</h3>
+        <div id="myListingsContainer" class="myListingsContainer">
+        </div>
     </div>
 </main>
 

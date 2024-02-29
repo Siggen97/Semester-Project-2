@@ -1,7 +1,7 @@
 import { fetchWithToken } from './token.js';
 
 const apiBase = "https://v2.api.noroff.dev";
-const createListingEndpoint = "/auction/listings";
+const createListing = "/auction/listings";
 
 document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('addListingForm');
@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         try {
-            // Send the POST request to create a new listing
-            const response = await fetchWithToken(`${apiBase}${createListingEndpoint}`, {
+            // POST request to create a new listing
+            const response = await fetchWithToken(`${apiBase}${createListing}`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(listingData),

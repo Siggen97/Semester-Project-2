@@ -1,4 +1,3 @@
-
 const apiBase = "https://v2.api.noroff.dev";
 const apiRegister = "/auth/register";
 const apiLogin = "/auth/login";
@@ -75,7 +74,7 @@ async function register(name, email, password) {
 // LOGIN USER
 async function login(email, password) {
     try {
-        const loginResponse = await fetch(`${apiBase}${apiLogin}`, {
+        const loginResponse = await fetch(apiBase + apiLogin, {
             headers: {
                 "Content-Type": "application/json",
             },
@@ -85,7 +84,6 @@ async function login(email, password) {
         if (loginResponse.ok) {
             const { accessToken } = await loginResponse.json();
             save("token", accessToken);
-            save("email", email)
             window.location.href = `profile.html?name=${loginResponse.email}&email=${loginResponse.email}`;
             return true;
         } else {

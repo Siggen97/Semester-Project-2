@@ -1,60 +1,69 @@
-import { fetchWithToken } from './token.js'; 
+import { fetchWithToken } from "./token.js";
 
+// Base API URL
 const apiBase = "https://v2.api.noroff.dev";
-const profileEndpoint = "/auction/profiles/";
 
-document.addEventListener('DOMContentLoaded', async () => {
-    
-    const userName = localStorage.getItem('name');
-    if (userName) {
-        await fetchAndDisplayUserProfile(userName);
-    } else {
-        console.error("User name is not found in localStorage.");
-    }
-});
+// Retrieve the username from localStorage
+const username = localStorage.getItem('userName'); // Ensure username is saved during login/registration
 
-async function fetchAndDisplayUserProfile(userName) {
+// Elements from the DOM
+const newAvatarUrlInput = document.getElementById("newAvatarUrl");
+const updateAvatarBtn = document.getElementById("updateAvatarBtn");
+const profileImgElement = document.getElementById("profileImg");
+const usernameElement = document.getElementById("username");
+const creditAmountElement = document.getElementById("creditAmount");
+
+// Fetch User Profile and display it
+async function fetchUserProfile() {
     try {
-        const profile = await fetchWithToken(`${apiBase}${profileEndpoint}${userName}`);
-        document.getElementById('username').textContent = profile.name || 'Username';
-        document.getElementById('profileImg').src = profile.avatar.url || '/src/img/default-avatar.png';
-        document.getElementById('creditAmount').textContent = profile.credits || '0';
+        const profileResponse = await fetchWithToken(`${apiBase}/auction/profiles/${username}`);
+        if (profileResponse) {
+            usernameElement.textContent = profileResponse.name || 'Username not found';
+            creditAmountElement.textContent = `Your Credits: ${profileResponse.credits}` || '0';
+            profileImgElement.src = profileResponse.avatar.url || '/src/img/default-avatar.png';
+        }
     } catch (error) {
         console.error("Error fetching user profile:", error);
     }
 }
 
-
-
-
-
-const createListingEndpoint = "/auction/listings";
-
-async function createListing(listingData) {
-    const url = `${apiBase}${createListingEndpoint}`;
-    
+// Update User Avatar
+async function updateAvatar(newAvatarUrl) {
     try {
-        const response = await fetchWithToken(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(listingData)
+        await fetchWithToken(`${apiBase}/auction/profiles/${username}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ avatar: { url: newAvatarUrl, alt: "User's new avatar" } })
         });
-
-        if (response.ok) {
-            console.log("Listing created successfully");
-        } else {
-            console.error("Failed to create listing");
-        }
+        alert("Avatar updated successfully!");
+        profileImgElement.src = newAvatarUrl + '?' + new Date().getTime(); // Bypass cache
     } catch (error) {
-        console.error("Error creating listing:", error);
+        console.error("Error updating avatar:", error);
+        alert("Failed to update avatar.");
     }
 }
 
-const listingData = {
-    title: "Vintage Lamp",
-    description: "A beautiful vintage lamp in excellent condition.",
-    media: [{ url: "https://url.com/image.jpg", alt: "Vintage Lamp" }],
-    endsAt: "2023-12-31T23:59:59.000Z" 
-};
+// Attach event listener to Update Avatar button
+updateAvatarBtn.addEventListener("click", () => {
+    const newAvatarUrl = newAvatarUrlInput.value;
+    if (newAvatarUrl) {
+        updateAvatar(newAvatarUrl);
+    } else {
+        alert("Please enter a URL for the new avatar.");
+    }
+});
 
-createListing(listingData);
+// Call fetchUserProfile on page load
+fetchUserProfile();
+
+
+
+
+
+// LOGOUT
+window.logoutUser = function() {
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('userName');
+    // Redirect to home page
+    window.location.href = '/index.html';
+};

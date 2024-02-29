@@ -6,7 +6,7 @@
     <title>Register Auction Website</title>
     <link rel="stylesheet" href="/src/style.css">
     <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <script defer type="module" src="/src/js/api.mjs"></script>
+    <script defer type="module" src="/src/js/register.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -30,7 +30,7 @@
 
     <main class="container my-5">
         <h2>Register</h2>
-        <form id="registrationForm">
+        <form id="registrationForm" name="createProfile">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
                 <input type="text" id="name" class="form-control" required>
@@ -43,7 +43,7 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" class="form-control" required>
             </div>
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary createProfile">Register</button>
         </form>
     </main>
 

@@ -45,3 +45,19 @@ body {
         margin: 3rem;
     }
 }
+
+ 
+.search {
+        margin: 1rem;
+        width: auto;
+    }
+
+.listingContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    img{
+        height: 25rem;
+    }
+
+}
