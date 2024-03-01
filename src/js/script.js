@@ -1,5 +1,6 @@
 
 
+
 // LOGOUT
 window.logoutUser = function() {
     localStorage.removeItem('accessToken');

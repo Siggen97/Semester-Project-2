@@ -4,9 +4,7 @@
  * @param {object} options  
  */
 
-
-const apiKey = '151877f2-2a01-426b-bbfe-e15214725f71'; 
-
+const apiKey = '151877f2-2a01-426b-bbfe-e15214725f71';
 
 export async function fetchWithToken(url, options) {
     try {

@@ -32,7 +32,7 @@ body .footer {
 .profileBody .searchField form {
   gap: 1rem;
 }
-.profileBody #profileImg {
+.profileBody #avatar {
   width: 100px;
   border-radius: 50%;
 }

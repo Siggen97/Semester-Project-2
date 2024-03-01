@@ -1,69 +1,52 @@
+
 import { fetchWithToken } from "./token.js";
 
-// Base API URL
 const apiBase = "https://v2.api.noroff.dev";
+const apiProfile = "/auction/profiles/";
 
-// Retrieve the username from localStorage
-const username = localStorage.getItem('userName'); // Ensure username is saved during login/registration
 
-// Elements from the DOM
-const newAvatarUrlInput = document.getElementById("newAvatarUrl");
-const updateAvatarBtn = document.getElementById("updateAvatarBtn");
-const profileImgElement = document.getElementById("profileImg");
-const usernameElement = document.getElementById("username");
-const creditAmountElement = document.getElementById("creditAmount");
+const name = localStorage.getItem('userName');
+const username = document.getElementById("username");
+username.innerHTML = name;
+var credits = "0";
 
-// Fetch User Profile and display it
-async function fetchUserProfile() {
+// Get username from URL
+function getUsernameFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get('name');
+}
+async function fetchProfile() {
+    const username = getUsernameFromURL() || localStorage.getItem('userName');
+    if (!username) {
+        console.error("Username not found.");
+        return;
+    }
     try {
-        const profileResponse = await fetchWithToken(`${apiBase}/auction/profiles/${username}`);
-        if (profileResponse) {
-            usernameElement.textContent = profileResponse.name || 'Username not found';
-            creditAmountElement.textContent = `Your Credits: ${profileResponse.credits}` || '0';
-            profileImgElement.src = profileResponse.avatar.url || '/src/img/default-avatar.png';
+        const url = `${apiBase}${apiProfile}${username}`; 
+        const json = await fetchWithToken(url); 
+    
+        if (json) { 
+            console.log("response:", json);
+            credits = json.data.credits;
+        } else {
+            console.error("Failed to fetch profile:", json.message || "Unknown error");
         }
     } catch (error) {
         console.error("Error fetching user profile:", error);
     }
+    document.getElementById("credits").textContent = `Your Credits: ${credits}` || 'Credits not available';
+
 }
 
-// Update User Avatar
-async function updateAvatar(newAvatarUrl) {
-    try {
-        await fetchWithToken(`${apiBase}/auction/profiles/${username}`, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ avatar: { url: newAvatarUrl, alt: "User's new avatar" } })
-        });
-        alert("Avatar updated successfully!");
-        profileImgElement.src = newAvatarUrl + '?' + new Date().getTime(); // Bypass cache
-    } catch (error) {
-        console.error("Error updating avatar:", error);
-        alert("Failed to update avatar.");
-    }
-}
 
-// Attach event listener to Update Avatar button
-updateAvatarBtn.addEventListener("click", () => {
-    const newAvatarUrl = newAvatarUrlInput.value;
-    if (newAvatarUrl) {
-        updateAvatar(newAvatarUrl);
-    } else {
-        alert("Please enter a URL for the new avatar.");
-    }
-});
-
-// Call fetchUserProfile on page load
-fetchUserProfile();
-
-
+// Call fetchProfile on load
+fetchProfile();
 
 
 
 // LOGOUT
 window.logoutUser = function() {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('userName');
-    // Redirect to home page
+    localStorage.removeItem('userName'); 
     window.location.href = '/index.html';
 };

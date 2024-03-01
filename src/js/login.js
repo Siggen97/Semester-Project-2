@@ -27,6 +27,11 @@ document.getElementById('loginForm').addEventListener("submit", async (event) =>
     }
 });
 
+
+
+
+
+
 /**
  * Log in user with provided credentials authenticate 
  * Stores JWT access token, user email and name. 
