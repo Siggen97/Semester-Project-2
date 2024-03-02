@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/style.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <script defer src="/src/js/singleListing.js"></script>
+    <title>Listing Details</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="auctions.html">AuctionSite</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/auctions.html">Listings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/view/profile.html">Profile</a>
+                    <p id="userCredits"></p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:logoutUser()">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</nav>
+<main>
+    <div id="container-fluid listingDetails">
+        <div class="container">
+            <h4>Listing Details</h4>
+            <div class="singleListingContainer">
+                <div class="singleListingDetails">
+                    <h3 id="listingTitle"></h3>
+                    <img src="" alt="listing media" id="listingMedia">
+                    <p id="listingDescription"></p>
+                    <p id="listingDeadline"></p>
+                    <p id="listingCurrentBid"></p>
+                    <input type="number" id="newBid" class="form-control" placeholder="Enter new bid amount">
+                    <button id="submitBidBtn" class="btn btn-primary m-3">Submit Bid</button>
+                </div>
+            </>
+        </div>
+    </div>
+</main>
+    <footer class="footer bg-light py-3">
+        <div class="container">
+            <span class="text-muted">Auction Website</span>
+        </div>
+    </footer>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

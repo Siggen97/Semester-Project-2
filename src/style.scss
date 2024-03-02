@@ -11,6 +11,30 @@ body {
 
     main {
         min-height: 100vh;
+        .profileSection1 {
+            justify-content: baseline;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        p {
+            margin: 1rem;
+            text-align: center;
+        }
+        .singleListingDetails{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 20rem;
+            }
+        }
+        .singleListingContainer {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-content: center;
+        }
     }
 
     .footer {
@@ -56,7 +80,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    img{
+    img {
         height: 25rem;
     }
 

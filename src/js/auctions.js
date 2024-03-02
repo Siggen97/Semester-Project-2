@@ -1,28 +1,30 @@
 const listingsContainer = document.querySelector('.listingContainer');
+let listings = []; 
 
-// Fetch and Display Listings
+// FETCH AND DISPLAY LISTINGS
 async function fetchAndDisplayListings() {
     const apiURL = 'https://v2.api.noroff.dev/auction/listings';
     try {
         const response = await fetch(apiURL);
         const data = await response.json();
-        displayListings(data.data);
+        listings = data.data; // Store the fetched listings globally
+        displayListings(listings); 
     } catch (error) {
         console.error('Failed to fetch listings:', error);
     }
 }
 
-// Display listings
-function displayListings(listings) {
+// DISPLAY LISTINGS
+function displayListings(listingsToDisplay) {
     listingsContainer.innerHTML = '';
-    listings.forEach(listing => {
+    listingsToDisplay.forEach(listing => {
         const listingElement = document.createElement('div');
         listingElement.className = 'listing';
         listingElement.innerHTML = `
             <div class="card" style="width: 20rem;">
                 <img src="${listing.media[0]?.url || 'placeholder-image-url.jpg'}" class="card-img-top" alt="${listing.media[0]?.alt}">
                 <div class="card-body">
-                    <h5 class="card-title">${listing.title}</h5>
+                    <h5 class="card-title"><a href="singleListing.html?id=${listing.id}" style="text-decoration: none;">${listing.title}</a></h5>
                     <p class="card-text">${listing.description}</p>
                     <p class="card-text"><small class="text-muted">Created: ${new Date(listing.created).toLocaleDateString()}</small></p>
                     <p class="card-text"><small class="text-muted">Ends: ${new Date(listing.endsAt).toLocaleDateString()}</small></p>
@@ -35,15 +37,16 @@ function displayListings(listings) {
     });
 }
 
-// Fetch Listings 
+// FETCH AND DISPLAY LISTINGS
 fetchAndDisplayListings();
 
-// Search
+// IMPLEMENT SEARCH FUNCTIONALITY
 document.getElementById('searchInput').addEventListener('input', (e) => {
     const searchText = e.target.value.toLowerCase();
+    
     const filteredListings = listings.filter(listing => 
         listing.title.toLowerCase().includes(searchText) || 
         listing.description.toLowerCase().includes(searchText)
     );
-    displayListings(filteredListings);
+    displayListings(filteredListings); // DISPLAY FILTERED LISTINGS
 });

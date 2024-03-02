@@ -34,22 +34,50 @@
     </div>
 </nav>
 <main>
-    <div class="container profileContainer">
+    <div class="m-5">
         <p>Hello and Welcome to your profile!</p>
-        <p id="username">username</p>
-        <img src="/src/img/trossardprofile.png" alt="avatar" id="avatar">
-        
-        <p id="credits"> <span id="creditAmount"></span></p>
-        <input type="url" id="newAvatarUrl" class="form-control" placeholder="Enter new avatar URL">
-        <button id="updateAvatarBtn" class="btn btn-primary m-3">Update Avatar</button>
-        
-        <a href="/view/addListing.html" class="btn btn-success">Add New Listing</a>
     </div>
-    <div>
+    <div class="container-fluid d-flex profileSection1">
+        <div class="container profileContainer">
+            <h5 id="username">username</h5>
+            <img src="" alt="avatar" id="avatar">
+            <p id="bio"></p>
+            <p id="credits"> <span id="creditAmount"></span></p>
+            <p id="listings"></p>
+            <p id="wins"></p>
+            <input type="url" id="newAvatarUrl" class="form-control" placeholder="Enter new avatar URL">
+            <button id="updateAvatarBtn" class="btn btn-primary m-3">Update Avatar</button>
+            
+        </div>
+        <div class="container">
+            <h5 class="mb-3">Add New Listing</h5>
+            <form id="addListingForm">
+                <div class="mb-3">
+                    <label for="listingTitle" class="form-label">Title</label>
+                    <input type="text" class="form-control" id="listingTitle" required>
+                </div>
+                <div class="mb-3">
+                    <label for="listingDeadline" class="form-label">Deadline Date</label>
+                    <input type="datetime-local" class="form-control" id="listingDeadline" required>
+                </div>
+                <div class="mb-3">
+                    <label for="listingMediaUrl" class="form-label">Media URL</label>
+                    <input type="url" class="form-control" id="listingMediaUrl" required>
+                </div>
+                <div class="mb-3">
+                    <label for="listingDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="listingDescription" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Listing</button>
+            </form>
+        </div>
+    </div>
+    <div class="container mt-5">
         <h3 class="m-5">My Listings</h3>
         <div id="myListingsContainer" class="myListingsContainer">
         </div>
     </div>
+    
 </main>
 
 
