@@ -1,3 +1,12 @@
+import { fetchProfile } from './fetchUserProfile.js';
+
+document.addEventListener('DOMContentLoaded', async (event) => {
+    const profileData = await fetchProfile();
+    if (profileData) {
+        console.log("Profile Data:", profileData);
+    }
+});
+
 
 const params = new URLSearchParams(window.location.search);
         const listingId = params.get('id');
@@ -14,15 +23,6 @@ const params = new URLSearchParams(window.location.search);
             }
         }
 
-        function displayListingDetails(listing) {
-            listingDetailsContainer.innerHTML = `
-                <h2>${listing.title}</h2>
-                <img src="${listing.media[0]?.url}" alt="${listing.media[0]?.alt}">
-                <p>${listing.description}</p>
-                <!-- Additional details display -->`;
-        }
-
-        
         function displayListingDetails(listing) {
             document.getElementById('listingMedia').src = listing.media[0]?.url || 'default-placeholder-image-url.jpg';
             document.getElementById('listingMedia').alt = listing.media[0]?.alt || 'listing media';

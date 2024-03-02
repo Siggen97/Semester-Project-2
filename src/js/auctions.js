@@ -1,3 +1,13 @@
+import { fetchProfile } from './fetchUserProfile.js';
+
+document.addEventListener('DOMContentLoaded', async (event) => {
+    const profileData = await fetchProfile();
+    if (profileData) {
+        console.log("Profile Data:", profileData);
+    }
+});
+
+
 const listingsContainer = document.querySelector('.listingContainer');
 let listings = []; 
 
