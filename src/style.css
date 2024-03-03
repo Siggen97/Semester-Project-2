@@ -16,7 +16,7 @@ body main .profileSection1 {
   gap: 1.5rem;
   flex-wrap: wrap;
 }
-body main p {
+body main p, body main .welcome {
   margin: 1rem;
   text-align: center;
 }

@@ -1,4 +1,3 @@
-
 import { fetchWithToken } from "./token.js";
 
 const apiBase = "https://v2.api.noroff.dev";
@@ -59,49 +58,58 @@ export async function fetchProfile() {
  * @param {string} newAvatarUrl
  * @param {object} data
  */
-async function updateAvatar(username, newAvatarUrl) {
-    const url = `${apiBase}${apiProfile}${username}`;
-    try {
-        const response = await fetchWithToken(url, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                avatar: {
-                    url: newAvatarUrl,
-                },
-            }),
-        });
-        if (response && response.ok) {
-            console.log("Avatar updated successfully");
-            document.getElementById("avatar").src = newAvatarUrl; 
-        } else {
-            console.error("Failed to update avatar");
+async function updateAvatar() {
+    document.getElementById("updateAvatarBtn").addEventListener("click", async function (evt) {
+        evt.preventDefault(); 
+        const newAvatarUrl = document.getElementById("newAvatarUrl").value;
+        if (!newAvatarUrl) {
+            alert("Please enter a URL for the new avatar.");
+            return;
         }
-    } catch (error) {
-        console.error("Error updating avatar:", error);
-    }
+
+        const userData = {
+            avatar: {
+                url: newAvatarUrl,
+                alt: "user avatar", 
+            },
+        };
+
+        const username = localStorage.getItem("userName");
+        const accessToken = localStorage.getItem("accessToken");
+        try {
+            const response = await fetchWithToken(`${apiBase}${apiProfile}${username}`, {
+                method: "PUT",
+                body: JSON.stringify(userData),
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${accessToken}`,
+                },
+            });
+
+            if (!response.ok) {
+                
+            }
+            const profileData = localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")) : null;
+            if (profileData) {
+                profileData.data.avatar.url = userData.avatar.url;
+                localStorage.setItem("profile", JSON.stringify(profileData));
+            }
+            alert("Avatar updated successfully");
+            window.location.reload(); // Reload the page to reflect the avatar change
+        } catch (error) {
+            if (error.status === 400 && error.data && error.data.errors) {
+                const errorMessage = error.data.errors.map((err) => err.message).join("\n");
+                alert(`Error updating avatar:\n${errorMessage}`);
+            } else {
+                console.error("Error updating avatar:", error);
+                alert(`Error updating avatar: ${error}.`);
+            }
+        }
+    });
 }
 
-
-// Event listener
-document.getElementById("updateAvatarBtn").addEventListener("click", () => {
-    const newAvatarUrl = document.getElementById("newAvatarUrl").value;
-    if (newAvatarUrl) {
-        const username = getUsernameFromURL() || localStorage.getItem('userName');
-        updateAvatar(username, newAvatarUrl);
-    } else {
-        alert("Please enter a URL for the new avatar.");
-    }
-});
-
-
-
-
-
-
-
+// Call updateAvatar function after the DOM content is fully loaded
+document.addEventListener("DOMContentLoaded", updateAvatar);
 
 // LOGOUT
 window.logoutUser = function() {

@@ -13,7 +13,8 @@ export async function fetchWithToken(url, options) {
             ...options,
             headers: {
                 Authorization: `Bearer ${accessToken}`,
-                "X-Noroff-API-Key": apiKey
+                'Content-Type': 'application/json',
+                "X-Noroff-API-Key": apiKey,
             },
         }
         const response = await fetch(url, options_auth);
@@ -23,4 +24,3 @@ export async function fetchWithToken(url, options) {
         console.log(error);
     }
 }
-
