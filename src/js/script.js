@@ -1,13 +1,7 @@
 
 
-
-// LOGOUT
 window.logoutUser = function() {
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('userName');
-    // Redirect to home page
+    localStorage.removeItem('userName'); 
     window.location.href = '/index.html';
 };
-
-
-

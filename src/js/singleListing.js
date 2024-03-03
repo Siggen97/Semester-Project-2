@@ -45,7 +45,7 @@ document.getElementById('submitBidBtn').addEventListener('click', async () => {
     
     
     // Optionally check if user has enough credits
-    var credits = `${userProfile.data.credits}`;
+    
     const currentCredits = Number(credits);
     const bidAmountNum = Number(bidAmount);
             if (currentCredits < bidAmountNum) {
@@ -54,7 +54,7 @@ document.getElementById('submitBidBtn').addEventListener('click', async () => {
             }
         
             try {
-                const data = await fetchWithToken(`https://v2.api.noroff.dev/auction/listings/${listingId}/bids`, {
+                const data = await fetchWithToken(`https://v2.api.noroff.dev/auction/listings/${id.value}/bids`, {
                     method: 'POST',
                     body: JSON.stringify({
                         amount: bidAmount,
