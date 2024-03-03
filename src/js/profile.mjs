@@ -95,7 +95,7 @@ async function updateAvatar() {
                 localStorage.setItem("profile", JSON.stringify(profileData));
             }
             alert("Avatar updated successfully");
-            window.location.reload(); // Reload the page to reflect the avatar change
+            window.location.reload(); // Reload 
         } catch (error) {
             if (error.status === 400 && error.data && error.data.errors) {
                 const errorMessage = error.data.errors.map((err) => err.message).join("\n");
