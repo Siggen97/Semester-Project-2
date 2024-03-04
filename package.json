@@ -7,8 +7,7 @@
   "scripts": {
     "build-css": "npm run build-css ",
     "build:scss": "sass src/style.scss:src/style.css",
-    "build:netlify": "npm run build:scss && npm run copy",
-    "build:local": "npm run build:scss && npm run copy",
+    "build:netlify": "npm run build:scss",
     "build": "npm run build:netlify",
     "watch": "sass --watch src/scss:dist/css",
     "dev": "npm run watch & live-server"
