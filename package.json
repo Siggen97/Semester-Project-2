@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build-css": "npm run build-css ",
-    "build:scss": "sass src/scss:src/css",
+    "build:scss": "sass src/style.scss:src/style.css",
     "build:netlify": "npm run build:scss && npm run copy",
     "build:local": "npm run build:scss && npm run copy",
     "build": "npm run build:netlify",
