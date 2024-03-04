@@ -5,7 +5,9 @@
   "description": "An auction website, where users can add items to be bid on and bid on items other users have put up for auction.",
   "main": "index.js",
   "scripts": {
-    "sass": "sass --watch src/scss:css"
+    "sass": "sass --watch src/scss:css",
+    "build-css": "npm run build-css ",
+    "build": "npm run build"
   },
   "keywords": [
     "CSS",
