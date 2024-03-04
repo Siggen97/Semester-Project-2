@@ -1,13 +1,20 @@
+
 {
   "name": "semester-project-2",
   "version": "1.0.0",
   "description": "An auction website, where users can add items to be bid on and bid on items other users have put up for auction.",
   "main": "index.js",
   "scripts": {
-    "build": "npm run build-css",
-    "build-css": "sass src/style.scss src/style.css"
+    "sass": "sass --watch src/scss:css"
   },
-  "keywords": [],
+  "keywords": [
+    "CSS",
+    "CSS",
+    "Frameworks",
+    "Bootstrap",
+    "SCSS",
+    "SASS"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -15,3 +22,7 @@
     "sass": "^1.70.0"
   }
 }
+
+
+
+
