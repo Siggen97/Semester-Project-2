@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run build-css && npm run build-js",
-    "build-css": "sass src/styles/main.scss public/styles/main.css"
+    "build-css": "sass src/style.scss src/style.css"
   },
   "keywords": [],
   "author": "",
